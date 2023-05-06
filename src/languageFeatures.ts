@@ -21,9 +21,10 @@ const colorNames = Object.values(namedColors);
 const editableColorRegex = new RegExp(
   `-\\[(${colorNames.join('|')}|((?:#|rgba?\\(|hsla?\\())[^\\]]+)\\]$`,
 );
-const stylesheet = document.createElement('style');
-document.head.append(stylesheet);
-
+if(process.browser) {
+  const stylesheet = document.createElement('style');
+  document.head.append(stylesheet);
+}
 function colorValueToHex(value: number): string {
   return Math.round(value * 255)
     .toString(16)
